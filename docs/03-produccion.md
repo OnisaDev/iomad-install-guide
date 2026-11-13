@@ -52,7 +52,7 @@ sudo a2enmod ssl headers
 
 ## Cortafuegos y SSH
 
-- Permitir solo 22 (administración), 80 y 443.
+- Permitir solo 22 (administración), 80 y 443. Cómo se activa UFW está en Configuración previa; aquí solo hay que añadir sudo ufw allow 443/tcp al configurar HTTPS.
 - SSH con claves y sin contraseña para `root`.
 
 ## Correo saliente
