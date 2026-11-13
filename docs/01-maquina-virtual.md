@@ -17,6 +17,20 @@ Alternativa: **Hyper-V**, disponible solo en Windows 10 y 11 Pro, Enterprise y E
 | SSH | 2222 | 22 |
 | Web | 8080 | 80 |
 
+### Valores usados en la prueba del 13/11/2026
+
+| Campo | Valor |
+|---|---|
+| Nombre | `iomad-lab` |
+| Memoria | 3072 MB (suficiente con Ubuntu Server sin escritorio) |
+| Procesadores | 2 |
+| Disco | 30 GB, VDI, dinámico |
+| Instalación desatendida | Omitida |
+| Red | NAT con reenvío de puertos en `127.0.0.1` |
+| Audio y USB | Desactivados |
+
+En el instalador de Ubuntu: proxy en blanco, mirror por defecto, disco entero **sin LVM ni cifrado**, OpenSSH server marcado y ningún snap adicional.
+
 ## Instalar Ubuntu Server
 
 - Tutorial oficial: <https://documentation.ubuntu.com/server/tutorial/>
