@@ -21,7 +21,7 @@ Fechas de soporte: Moodle 4.5 LTS y IOMAD 4.5 LTS hasta octubre de 2027; PHP 8.3
 2. [Instalación de IOMAD](docs/02-instalacion-iomad.md): paquetes, MariaDB, PHP, código, permisos, Apache e instalador web
 3. [Producción](docs/03-produccion.md): HTTPS, cron, copias de seguridad, seguridad y actualizaciones
 4. [Problemas conocidos](docs/04-problemas-conocidos.md): error "Not found" en la página principal y el área personal
-5. [Demo con datos de prueba y pendientes](docs/05-demo-y-pendientes.md)
+5. [Demo con datos de prueba](docs/05-demo-y-pendientes.md)
 
 ## Aviso
 
