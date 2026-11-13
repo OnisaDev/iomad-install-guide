@@ -8,6 +8,15 @@ sudo apt install -y apache2 php8.3 libapache2-mod-php8.3 php8.3-mysql php8.3-cur
   php8.3-gd php8.3-intl php8.3-mbstring php8.3-xml php8.3-zip php8.3-soap \
   php8.3-opcache git unzip
 ```
+Comprobación:
+
+```bash
+apache2 -v
+php -v
+sudo systemctl status apache2 --no-pager
+```
+
+Versiones obtenidas: Apache 2.4.58 y PHP 8.3.6. Desde el navegador del equipo, `http://localhost:8080` debe mostrar la página "It works!" de Apache, lo que confirma el reenvío de puertos y el cortafuegos.
 
 El instalador web comprueba las extensiones; si falta alguna, se instala con `apt`.
 
@@ -18,6 +27,14 @@ sudo apt install -y mariadb-server
 sudo mysql_secure_installation
 sudo mariadb
 ```
+Comprobación de la versión y del usuario:
+
+```bash
+mariadb --version
+mariadb -u iomaduser -p iomad -e "SELECT 'ok';"
+```
+
+Versión obtenida: MariaDB 10.11.14. El segundo comando pide la contraseña de `iomaduser` y debe devolver una tabla con `ok`.
 
 En el asistente: poner contraseña de root de MariaDB y responder `Y` al resto. Dentro de `mariadb`:
 
