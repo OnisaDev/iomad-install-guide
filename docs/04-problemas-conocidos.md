@@ -4,6 +4,8 @@
 
 **Síntoma:** en la pantalla de rutas del instalador web aparece este aviso en rojo.
 
+![Aviso del instalador sobre el directorio de datos](img/error-directorio-datos.png)
+
 **Causa:** la carpeta `/var/moodledata` no existe o `www-data` (el usuario de Apache) no puede escribir en ella.
 
 **Solución:** ejecutar **uno a uno**:
