@@ -17,7 +17,7 @@ Alternativa: **Hyper-V**, disponible solo en Windows 10 y 11 Pro, Enterprise y E
 | SSH | 2222 | 22 |
 | Web | 8080 | 80 |
 
-### Valores usados en la prueba del 13/11/2026
+### Valores usados en la prueba 
 
 | Campo | Valor |
 |---|---|
