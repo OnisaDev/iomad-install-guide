@@ -10,7 +10,7 @@ Guía práctica para montar una plataforma **IOMAD** (Moodle multi-empresa) en u
 | Apache | 2.4.58 | Con `mod_php` en el laboratorio |
 | PHP | 8.3.6 | Moodle 4.5 admite de 8.1 a 8.3 |
 | MariaDB | 10.11.14 | Mínimo 10.6.7 para Moodle 4.5 |
-| IOMAD | 4.5 LTS (rama `IOMAD_405_STABLE`) | Confirmar el nombre de la rama con `git ls-remote` |
+| IOMAD | 4.5 LTS (rama `IOMAD_405_STABLE`), release 4.5.16 | No usar la rama `IOMAD_405_EXPERIMENTAL` |
 | Virtualización | VirtualBox | Máquina con 4 GB de RAM, 2 CPU y 30 GB de disco |
 
 Fechas de soporte: Moodle 4.5 LTS y IOMAD 4.5 LTS hasta octubre de 2027; PHP 8.3 con seguridad hasta el 31 de diciembre de 2027.
