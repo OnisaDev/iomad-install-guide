@@ -58,12 +58,46 @@ grep max_input_vars /etc/php/8.3/apache2/php.ini
 
 Si habrá vídeos o ficheros grandes, ajustar también `upload_max_filesize`, `post_max_size` y `memory_limit`.
 
+Después de cambiar el valor hay que reiniciar Apache para que lo lea:
+
+```bash
+sudo systemctl restart apache2
+```
+
+El `grep` debe mostrar `max_input_vars = 5000` en `/etc/php/8.3/apache2/php.ini` y en `/etc/php/8.3/cli/php.ini`, **sin punto y coma delante**. Si aparece `;max_input_vars`, la línea sigue comentada y el cambio no se ha aplicado.
+
 ## Código de IOMAD 
 
 ```bash
 git ls-remote --heads https://github.com/iomad/iomad | grep -i 405
 sudo git clone --depth 1 --branch IOMAD_405_STABLE https://github.com/iomad/iomad.git /var/www/iomad
 ```
+El primer comando devuelve dos ramas de la versión 4.5:
+
+```text
+refs/heads/IOMAD_405_EXPERIMENTAL
+refs/heads/IOMAD_405_STABLE
+```
+
+Hay que usar siempre **`IOMAD_405_STABLE`**. La rama `EXPERIMENTAL` es de desarrollo y no es adecuada para una plataforma que se vaya a usar.
+
+La descarga con `--depth 1` trae solo el último estado del código (sin el historial), unos 118 MiB, y tarda unos minutos aunque parezca parada. Al terminar, el código ocupa unos 643 MB en disco.
+
+Comprobación:
+
+```bash
+ls /var/www/iomad | head
+grep '\$release' /var/www/iomad/version.php
+du -sh /var/www/iomad
+```
+
+Resultado obtenido:
+
+- `ls` muestra carpetas como `admin`, `auth`, `blocks`, etc.
+- `$release = '4.5.16 (Build: 20261112)'`
+- Tamaño: 643 MB
+
+El número de release cambia cuando se publican versiones menores de la rama estable, así que puede salir otro más reciente. Lo importante es que empiece por `4.5`.
 
 Se instala el paquete completo de IOMAD, **no** Moodle más plugins. Hay que actualizar siempre con el código de IOMAD, nunca con el de Moodle estándar.
 
@@ -75,6 +109,15 @@ sudo chown -R www-data:www-data /var/moodledata
 sudo chmod 770 /var/moodledata
 sudo chown -R www-data:www-data /var/www/iomad
 ```
+El último `chown -R` recorre unos 35.000 ficheros y puede tardar unos segundos.
+
+Comprobación:
+
+```bash
+ls -ld /var/moodledata /var/www/iomad
+```
+
+Ambas líneas deben mostrar `www-data www-data` como propietario y grupo, y `/var/moodledata` debe tener los permisos `drwxrwx---`.
 
 `/var/moodledata` debe quedar **fuera** de la carpeta web. El código se deja propiedad de `www-data` solo durante la instalación.
 
