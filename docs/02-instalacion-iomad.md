@@ -161,6 +161,9 @@ curl -I http://localhost/
 Respuesta obtenida: `HTTP/1.1 302 Found` con `Location: install.php`. En el navegador (`http://localhost:8080`) aparece el instalador de Moodle.
 **Sobre `FallbackResource /r.php`:** es la configuración del router de Moodle. Es opcional en la 4.5 y obligatoria desde la 5.1. En el laboratorio original, con esta línea activa, la Página Principal y el Área personal mostraban "Not found". En la prueba del 15/11/2026, con la línea **desactivada**, ambas páginas cargan correctamente. Más detalle en [Problemas conocidos](04-problemas-conocidos.md).
 
+![Área personal con el panel de IOMAD](img/area-personal-ok.png)
+
+![Página Principal funcionando](img/pagina-principal-ok.png)
 
 ## Instalador web
 
