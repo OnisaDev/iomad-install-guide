@@ -1,8 +1,40 @@
 # 4. Problemas conocidos
 
-## "Excepción - Not found" en la Página Principal y el Área personal
+## "El directorio de los datos (/var/moodledata) no puede ser creado por el instalador"
 
-![Error Not found](img/error-not-found.png)
+**Síntoma:** en la pantalla de rutas del instalador web aparece este aviso en rojo.
+
+**Causa:** la carpeta `/var/moodledata` no existe o `www-data` (el usuario de Apache) no puede escribir en ella.
+
+**Solución:** ejecutar **uno a uno**:
+
+```bash
+sudo mkdir -p /var/moodledata
+sudo chown -R www-data:www-data /var/moodledata
+sudo chmod 770 /var/moodledata
+sudo -u www-data touch /var/moodledata/prueba && echo "OK" && sudo rm /var/moodledata/prueba
+```
+
+El último comando debe imprimir `OK`. Después se recarga el instalador.
+
+## "La configuración de PHP max_input_vars debe ser al menos 5000"
+
+**Síntoma:** el instalador web muestra este error en la comprobación de requisitos y no deja continuar.
+
+**Causa:** el valor no está aplicado en la configuración de PHP de Apache, o Apache no se ha reiniciado después de cambiarlo. 
+
+**Solución:**
+
+```bash
+grep max_input_vars /etc/php/8.3/apache2/php.ini
+sudo systemctl restart apache2
+```
+
+Debe salir `max_input_vars = 5000` sin punto y coma delante. Después se recarga la comprobación.
+
+Aviso relacionado: **"site not https"** es solo informativo en un laboratorio.
+
+## "Excepción - Not found" en la Página Principal y el Área personal
 
 **Síntoma:** tras instalar, la *Página Principal* y el *Área personal* muestran "Not found". El panel de administración y el *IOMAD dashboard* funcionan, porque usan ficheros que existen realmente.
 
