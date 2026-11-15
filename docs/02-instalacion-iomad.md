@@ -150,13 +150,23 @@ sudo a2ensite iomad
 sudo apache2ctl configtest
 sudo systemctl reload apache2
 ```
+Ejecutar los comandos **uno a uno**: si se pegan varios a la vez, `sudo` puede ignorar los siguientes.
 
-**Sobre `FallbackResource /r.php`:** es el router de Moodle. En el laboratorio, con esta línea activa, la página principal y el área personal daban "Not found". Es opcional en la 4.5 y obligatorio desde la 5.1. Detalle y solución en [Problemas conocidos](04-problemas-conocidos.md). Si se deja activa, antes de instalar la raíz dará error 500 (el router busca `config.php`, que aún no existe): abrir directamente `/install.php`.
+Comprobación antes de instalar:
+
+```bash
+curl -I http://localhost/
+```
+
+Respuesta obtenida: `HTTP/1.1 302 Found` con `Location: install.php`. En el navegador (`http://localhost:8080`) aparece el instalador de Moodle.
+**Sobre `FallbackResource /r.php`:** es la configuración del router de Moodle. Es opcional en la 4.5 y obligatoria desde la 5.1. En el laboratorio original, con esta línea activa, la Página Principal y el Área personal mostraban "Not found". En la prueba del 15/11/2026, con la línea **desactivada**, ambas páginas cargan correctamente. Más detalle en [Problemas conocidos](04-problemas-conocidos.md).
+
 
 ## Instalador web
 
 Abrir `http://NOMBRE/install.php` (en el laboratorio, `http://localhost:8080/install.php`) y rellenar:
 
+- **Idioma:** se eligió *Español - Internacional (es)*.
 - **Dirección web:** la URL real y definitiva (en producción, `https://...`). Cambiarla después es delicado. En el laboratorio se usó siempre `localhost`, no `127.0.0.1`.
 - **Directorio de datos:** `/var/moodledata` (el instalador propone otro por defecto: corregirlo).
 - **Base de datos:** tipo MariaDB, servidor `localhost`, nombre `iomad`, usuario `iomaduser`. Puerto y socket vacíos.
@@ -164,6 +174,8 @@ Abrir `http://NOMBRE/install.php` (en el laboratorio, `http://localhost:8080/ins
 - Comprobar que los requisitos salen en verde. En el laboratorio solo avisó de que no había HTTPS.
 - La instalación de tablas tarda varios minutos: no recargar ni cerrar la pestaña.
 - Crear la cuenta de administrador (contraseña con mayúscula, minúscula, número y carácter especial) y guardarla de forma segura.
+  
+Al terminar, IOMAD pide **crear al menos una empresa**. En la prueba se creó una de demostración (`Academia Demo`, nombre corto `demo`) con los valores por defecto. Con la empresa creada, la instalación queda completa.
 
 ## Cierre tras instalar
 
